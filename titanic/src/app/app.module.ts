@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { AnalyseComponent } from './analyse/analyse.component';
 import { HttpClientModule } from '@angular/common/http';
 import { GraphComponent } from './graph/graph.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { GraphComponent } from './graph/graph.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

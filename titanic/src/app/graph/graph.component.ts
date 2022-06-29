@@ -26,6 +26,11 @@ export class GraphComponent implements OnInit {
     this.data.age = urlSplit[3];
     this.data.classe = urlSplit[4];
     this.Survivor = this.filterSearch();
+    this.myChart1();
+    this.myChart2();
+  }
+
+  myChart1(): void {
     var myChart = new Chart("myChart", {type: 'bar',
     data: {
         labels: ['Survivant', 'Mort'],
@@ -33,8 +38,8 @@ export class GraphComponent implements OnInit {
             label: '#survivor',
             data: [this.Survivor.filter(data => data.Survived == 1).length,this.Survivor.filter(data => data.Survived == 0).length],
             backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)'
+                'rgba(127, 255, 0, 1)',
+                'rgba(0, 0, 0, 1)'
             ],
             borderColor: [
                 'rgba(255, 99, 132, 1)',
@@ -46,12 +51,41 @@ export class GraphComponent implements OnInit {
     options: {
         scales: {
             y: {
-                beginAtZero: true
+                beginAtZero: true,
+                
             }
         }
     }});
   }
-
+  myChart2(): void {
+    var myChart = new Chart("myChart2", {type: 'bar',
+    data: {
+        labels: ['S', 'C','Q'],
+        datasets: [{
+            label: '#Embarked',
+            data: [this.Survivor.filter(data => data.Embarked == "S").length,this.Survivor.filter(data => data.Embarked == "C").length, this.Survivor.filter(data => data.Embarked == "Q").length],
+            backgroundColor: [
+                'rgba(127, 255, 0, 1)',
+                'rgba(127, 255, 0, 1)',
+                'rgba(0, 0, 0, 1)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true,
+            }
+        },
+        
+    }});
+  }
   filterSearch(): Passenger[] {
     let saveArray : Passenger[] = this.Survivor;
     if (this.data.sex == "male" || this.data.sex == "female")
@@ -64,4 +98,7 @@ export class GraphComponent implements OnInit {
     return(saveArray);
   }
 
+  click(): void {
+    this.Router.navigate(['/analyse'])
+  }
 }

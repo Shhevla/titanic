@@ -9,6 +9,7 @@ import { AnalyseComponent } from './analyse/analyse.component';
 import { HttpClientModule } from '@angular/common/http';
 import { GraphComponent } from './graph/graph.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { IntroComponent } from './intro/intro.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     LoginComponent,
     AnalyseComponent,
     GraphComponent,
+    IntroComponent,
     
   ],
   imports: [

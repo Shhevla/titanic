@@ -5,6 +5,8 @@ import { GraphComponent } from './graph/graph.component';
 import { IntroComponent } from './intro/intro.component';
 import { LoginComponent } from './login/login.component';
 import { GuardService } from './guard.service';
+import { ConlogComponent } from './conlog/conlog.component';
+
 const routes: Routes = [
   {
     path: 'intro',
@@ -20,6 +22,7 @@ const routes: Routes = [
     redirectTo: '/intro',
     pathMatch: 'full'
   },
+  
   {
     path: 'login',
     component: LoginComponent

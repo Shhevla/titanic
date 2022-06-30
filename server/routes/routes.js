@@ -45,4 +45,13 @@ router.get("/users/:name/:password", async(req, res) => {
     }
 });
 
+router.put("/users/:login", async(req, res) => {
+    const { name } = req.body.name;
+
+    const user = await UserModel.updateOne({ name: name }, { login: req.params.login });
+
+    res.json(user);
+});
+
+
 export default router;

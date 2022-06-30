@@ -9,14 +9,15 @@ import { AuthService } from '../auth.service';
 })
 export class ConlogComponent implements OnInit {
 
-  islogin = this.aS.isLoggin();
+  islogin : boolean = this.aS.isLoggin();
   constructor(private aS: AuthService) { }
 
   ngOnInit(): void {
+    this.islogin = this.aS.isLoggin();
   }
 
   refreshLogin() {
-    this.islogin = env.isLoggin;
+    this.islogin = this.aS.isLoggin();
   }
 
   clickLogOut() {

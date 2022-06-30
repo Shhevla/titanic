@@ -1,1 +1,11 @@
-<p>login works!</p>
+<form (ngSubmit)="onSubmit(formSearch)" #formSearch="ngForm">
+    <div class="form-group m-3">
+        <label for="inputSexe">Name</label>
+        <input name="name" [(ngModel)]="userConnect.name" required type="text" class="form-control" id="inputSexe" aria-describedby="nameHelp" #name="ngModel" />
+    </div>
+    <div class="form-group m-3">
+        <label for="inputAge">Password</label>
+        <input name="password" [(ngModel)]="userConnect.password" required type="password" class="form-control " id="inputAge " aria-describedby="nameHelp " #name="ngModel" />
+    </div>
+    <button type="submit ">Analyse</button>
+</form>

@@ -10,6 +10,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { GraphComponent } from './graph/graph.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { IntroComponent } from './intro/intro.component';
+import { ConlogComponent } from './conlog/conlog.component';
+
 
 @NgModule({
   declarations: [
@@ -18,6 +20,7 @@ import { IntroComponent } from './intro/intro.component';
     AnalyseComponent,
     GraphComponent,
     IntroComponent,
+    ConlogComponent,
     
   ],
   imports: [

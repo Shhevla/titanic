@@ -13,10 +13,22 @@ export interface Passenger {
     Embarked: String
 }
 
+export interface User {
+    name: String,
+    password: string
+}
+
 export class Survivor {
     constructor (
         public sex : string,
         public age : string,
         public classe : string
+    ) {}
+}
+
+export class UserRegistration {
+    constructor (
+        public name : string,
+        public password : string
     ) {}
 }

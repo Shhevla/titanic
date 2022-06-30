@@ -3,7 +3,12 @@ import { Router } from '@angular/router';
 import { Passenger, Survivor } from '../model';
 import { PassengersService } from '../passengers.service';
 import { Chart, ChartItem, registerables } from 'chart.js';
+import annotationPlugin from 'chartjs-plugin-annotation';
+import * as math from 'mathjs';
+
+
 Chart.register(...registerables);
+Chart.register(annotationPlugin);
 
 @Component({
   selector: 'app-graph',
@@ -31,12 +36,14 @@ export class GraphComponent implements OnInit {
   }
 
   myChart1(): void {
+    const nb1 = this.Survivor.filter(data => data.Survived == 1).length;
+    const nb2 = this.Survivor.filter(data => data.Survived == 0).length
     var myChart = new Chart("myChart", {type: 'bar',
     data: {
         labels: ['Survivant', 'Mort'],
         datasets: [{
             label: '#survivor',
-            data: [this.Survivor.filter(data => data.Survived == 1).length,this.Survivor.filter(data => data.Survived == 0).length],
+            data: [nb1,nb2],
             backgroundColor: [
                 'rgba(127, 255, 0, 1)',
                 'rgba(0, 0, 0, 1)'
@@ -54,16 +61,43 @@ export class GraphComponent implements OnInit {
                 beginAtZero: true,
                 
             }
+        },
+        plugins: {
+          annotation: {
+            annotations: {
+              line1: {
+                type: 'line',
+                borderColor: 'red',
+                borderDash: [6, 6],
+                borderDashOffset: 0,
+                borderWidth: 3,
+                scaleID: 'y',
+                value: (nb1+nb2)/2
+              },
+              line2: {
+                type: 'line',
+                borderColor: 'purple',
+                borderDash: [6, 6],
+                borderDashOffset: 0,
+                borderWidth: 3,
+                scaleID: 'y',
+                value: math.std(nb1, nb2)
+              }
+            }
+          }
         }
     }});
   }
   myChart2(): void {
+    const nb1 = this.Survivor.filter(data => data.Embarked == "S").length;
+    const nb2 = this.Survivor.filter(data => data.Embarked == "C").length;
+    const nb3 = this.Survivor.filter(data => data.Embarked == "Q").length;
     var myChart = new Chart("myChart2", {type: 'bar',
     data: {
         labels: ['S', 'C','Q'],
         datasets: [{
             label: '#Embarked',
-            data: [this.Survivor.filter(data => data.Embarked == "S").length,this.Survivor.filter(data => data.Embarked == "C").length, this.Survivor.filter(data => data.Embarked == "Q").length],
+            data: [nb1, nb2 , nb3],
             backgroundColor: [
                 'rgba(127, 255, 0, 1)',
                 'rgba(127, 255, 0, 1)',
@@ -83,7 +117,30 @@ export class GraphComponent implements OnInit {
                 beginAtZero: true,
             }
         },
-        
+        plugins: {
+          annotation: {
+            annotations: {
+              line1: {
+                type: 'line',
+                borderColor: 'red',
+                borderDash: [6, 6],
+                borderDashOffset: 0,
+                borderWidth: 3,
+                scaleID: 'y',
+                value: (nb1+nb2+nb3)/2
+              },
+              line2: {
+                type: 'line',
+                borderColor: 'purple',
+                borderDash: [6, 6],
+                borderDashOffset: 0,
+                borderWidth: 3,
+                scaleID: 'y',
+                value: math.std(nb1, nb2, nb3)
+              }
+            }
+          }
+        }
     }});
   }
   filterSearch(): Passenger[] {

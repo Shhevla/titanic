@@ -4,7 +4,7 @@ import { AnalyseComponent } from './analyse/analyse.component';
 import { GraphComponent } from './graph/graph.component';
 import { IntroComponent } from './intro/intro.component';
 import { LoginComponent } from './login/login.component';
-
+import { GuardService } from './guard.service';
 const routes: Routes = [
   {
     path: 'intro',
@@ -12,6 +12,7 @@ const routes: Routes = [
   },
   {
     path: 'analyse',
+    canActivate:[GuardService],
     component: AnalyseComponent
   },
   {
@@ -25,10 +26,12 @@ const routes: Routes = [
   },
   {
     path:'graph/:sex/:age/:classe',
+    canActivate:[GuardService],
     component: GraphComponent
   },
   {
     path:'graph',
+    canActivate:[GuardService],
     component: GraphComponent
   }
 ];

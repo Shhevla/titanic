@@ -28,7 +28,6 @@ export class LoginComponent implements OnInit {
       
       await this.route.navigate(['/analyse']);
       window.location.reload();
-      
       this.usercheck = 0;
     } else {
       this.usercheck = 1;

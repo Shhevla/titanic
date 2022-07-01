@@ -3,8 +3,6 @@ import {Router} from "@angular/router";
 import { NgForm } from '@angular/forms';
 import { User, UserRegistration } from '../model';
 import { PassengersService } from '../passengers.service';
-import { environment as env } from 'src/environments/environment';
-
 
 
 @Component({
@@ -26,7 +24,6 @@ export class LoginComponent implements OnInit {
 
     await this.pS.getUserSpecificMdp(this.userConnect.name, this.userConnect.password).then(data => {userMaybe = data})
     if (userMaybe != null) {
-      await this.pS.modifyLogin(userMaybe);
       this.route.navigate(['/analyse']);
     }
   }

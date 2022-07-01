@@ -11,7 +11,7 @@ import { PassengersService } from '../passengers.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  usercheck : number = 0;
   constructor(private pS : PassengersService, private route : Router) { }
   userConnect: UserRegistration = new UserRegistration("", "");
   
@@ -24,8 +24,14 @@ export class LoginComponent implements OnInit {
 
     await this.pS.getUserSpecificMdp(this.userConnect.name, this.userConnect.password).then(data => {userMaybe = data})
     if (userMaybe != null) {
-      this.pS.modifyLogin(userMaybe);
-      this.route.navigate(['/analyse']);
+      await this.pS.modifyLogin(userMaybe);
+      
+      await this.route.navigate(['/analyse']);
+      window.location.reload();
+      
+      this.usercheck = 0;
+    } else {
+      this.usercheck = 1;
     }
   }
 

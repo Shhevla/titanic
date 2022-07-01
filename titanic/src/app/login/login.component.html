@@ -7,5 +7,12 @@
         <label for="inputAge">Password</label>
         <input name="password" [(ngModel)]="userConnect.password" required type="password" class="form-control " id="inputAge " aria-describedby="nameHelp " #name="ngModel" />
     </div>
+    <div *ngIf="usercheck == 1" class="alert alert-danger">
+        <div>
+            Name or Password wrong.
+        </div>
+
+    </div>
     <button type="submit" [disabled]="formSearch.invalid">Log in</button>
+
 </form>

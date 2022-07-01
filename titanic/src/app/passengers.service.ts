@@ -51,9 +51,11 @@ export class PassengersService {
  modifyLogin(userR: User) {
     const name = userR.name;
     const password = userR.password;
+    console.log("oui");
     this.http.post<User>(`http://localhost:8000/users/login`, {name, password}, httpOptions).subscribe(data => {
       if (data) {
         localStorage.setItem('currentUser', JSON.stringify({name: data.login, isAuth: true}));
+        console.log(data);
       }
     });
   }

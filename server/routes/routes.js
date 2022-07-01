@@ -53,5 +53,19 @@ router.put("/users/:login", async(req, res) => {
     res.json(user);
 });
 
+router.post("/users/login", async(req, res) => {
+    const name = req.body.name;
+    const password = req.body.password;
+
+    UserModel.findOne({ name: name }, (err, data) => {
+        if (err) throw err;
+        if (data) {
+            if (data.password === password) {
+                return res.send(data);
+            } else return res.status(403).send("incorrect password");
+        }
+    });
+});
+
 
 export default router;

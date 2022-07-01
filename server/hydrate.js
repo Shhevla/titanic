@@ -1,8 +1,10 @@
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 
-import { PastrieModel } from "./models/Pastrie.js";
-import { pastries } from "./mocks/mock-pastries-node.js";
+import {
+    UserModel
+} from "./models/User.js";
+import { users } from "./mock/user-node.js";
 
 dotenv.config();
 
@@ -22,8 +24,8 @@ mongoose.connect(
 
 export const init = async() => {
     try {
-        await PastrieModel.deleteMany();
-        const res = await PastrieModel.insertMany(pastries);
+        await UserModel.deleteMany();
+        const res = await UserModel.insertMany(users);
         return res;
     } catch (err) {
         console.error(err);

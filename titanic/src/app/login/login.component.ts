@@ -25,10 +25,8 @@ export class LoginComponent implements OnInit {
     let userMaybe : User | null = null;
 
     await this.pS.getUserSpecificMdp(this.userConnect.name, this.userConnect.password).then(data => {userMaybe = data})
-    console.log(userMaybe);
     if (userMaybe != null) {
-      env.isLoggin = true;
-      env.isName = this.userConnect.name;
+      await this.pS.modifyLogin(userMaybe);
       this.route.navigate(['/analyse']);
     }
   }

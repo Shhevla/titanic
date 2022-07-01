@@ -7,5 +7,5 @@
         <label for="inputAge">Password</label>
         <input name="password" [(ngModel)]="userConnect.password" required type="password" class="form-control " id="inputAge " aria-describedby="nameHelp " #name="ngModel" />
     </div>
-    <button type="submit ">Analyse</button>
+    <button type="submit" [disabled]="formSearch.invalid">Analyse</button>
 </form>

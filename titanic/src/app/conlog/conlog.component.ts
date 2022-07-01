@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { environment as env } from 'src/environments/environment';
 import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-conlog',
@@ -9,17 +9,22 @@ import { AuthService } from '../auth.service';
 })
 export class ConlogComponent implements OnInit {
 
-  islogin = this.aS.isLoggin();
-  constructor(private aS: AuthService) { }
+  islogin : boolean = false;
+  constructor(private aS: AuthService, private route: Router) { }
 
   ngOnInit(): void {
+    if (localStorage.getItem('currentUser')) {
+      const user = JSON.parse(localStorage.getItem('currentUser')!);
+      this.islogin = user.isAuth;
+    }
   }
 
   refreshLogin() {
-    this.islogin = env.isLoggin;
+    this.islogin = this.aS.isLoggin();
   }
 
   clickLogOut() {
-    env.isLoggin = false;
+    localStorage.removeItem('currentUser');
+    this.route.navigate(['/intro']);
   }
 }

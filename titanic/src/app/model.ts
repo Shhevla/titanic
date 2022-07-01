@@ -15,7 +15,8 @@ export interface Passenger {
 
 export interface User {
     name: String,
-    password: string
+    password: string,
+    login: boolean
 }
 
 export class Survivor {

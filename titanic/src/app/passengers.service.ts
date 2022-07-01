@@ -1,11 +1,17 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Subject, Observable, throwError } from 'rxjs';
 import { map, filter  } from 'rxjs/operators';
 import { Passenger,User } from './model';
 import { UserRegistration } from './model';
 
-
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json',
+    Authorization: 'my-auth-token'
+  })
+};
+export let isAuth : boolean = false
 
 @Injectable({
   providedIn: 'root'
@@ -40,5 +46,16 @@ export class PassengersService {
       this.http.get<User>(`http://localhost:8000/users/${name}/${password}`).subscribe(data => {resolve(data)});
     });
     return isPromise;
+  }
+
+  modifyLogin(userR: User) {
+    const name = userR.name;
+    const password = userR.password;
+
+    this.http.post<User>(`http://localhost:8000/users/login`, {name, password}, httpOptions).subscribe(data => {
+      if (data) {
+        localStorage.setItem('currentUser', JSON.stringify({name: data.login, isAuth: true}));
+      }
+    });
   }
 }

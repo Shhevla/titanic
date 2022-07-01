@@ -16,6 +16,8 @@ export class ConlogComponent implements OnInit {
     if (localStorage.getItem('currentUser')) {
       const user = JSON.parse(localStorage.getItem('currentUser')!);
       this.islogin = user.isAuth;
+    } else {
+      this.islogin = false;
     }
   }
 
@@ -25,6 +27,7 @@ export class ConlogComponent implements OnInit {
 
   clickLogOut() {
     localStorage.removeItem('currentUser');
+    this.ngOnInit();
     this.route.navigate(['/intro']);
   }
 }

@@ -151,7 +151,6 @@ export class GraphComponent implements OnInit {
         saveArray = saveArray.filter(data => data.Age == +this.data.age);
     if (this.data.classe != "")
       saveArray = saveArray.filter(data => data.Pclass == +this.data.classe);
-      console.log(saveArray);
     return(saveArray);
   }
 

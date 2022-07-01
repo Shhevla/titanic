@@ -22,7 +22,6 @@ export class AnalyseComponent implements OnInit {
 
   onSubmit(form: NgForm): void {
     this.Router.navigate(['/graph', this.modelSearch.sex, this.modelSearch.age, this.modelSearch.classe])
-    //this.Router.navigate(['/graph']);
   }
 
   
